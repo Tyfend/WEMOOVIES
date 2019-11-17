@@ -19,11 +19,27 @@
                         <a href="#">Films</a>
                     </li>
                     <li>
-                        <a href="{{ path('blog_create')}}">Nouvel article</a>
+                        <a href="{{ path('blog_create') }}">Nouvel article</a>
                     </li>
+                    {% if is_granted('ROLE_ADMIN') %}
                      <li>
-                        <a href="#">Connexion</a>
+                        <a href="#">Administration</a>
                     </li>
+                    {% elseif is_granted('ROLE_USER') %}
+                    <li>
+                        <a href="#">Profil</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('security_logout') }}">Déconnexion</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{{ path('security_login') }}">Connexion</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('security_signup') }}">S'enregistrer</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>

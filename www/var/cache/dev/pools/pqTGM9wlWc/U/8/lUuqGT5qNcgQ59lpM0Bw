@@ -1,0 +1,35 @@
+<?php
+
+namespace Symfony\Component\VarExporter\Internal;
+
+return $getExpiry ? PHP_INT_MAX : Hydrator::hydrate(
+    $o = [
+        clone (($p = &Registry::$prototypes)['Symfony\\Component\\Validator\\Constraints\\EqualTo'] ?? Registry::p('Symfony\\Component\\Validator\\Constraints\\EqualTo')),
+        clone ($p['Symfony\\Component\\Validator\\Constraints\\NotBlank'] ?? Registry::p('Symfony\\Component\\Validator\\Constraints\\NotBlank')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'message' => [
+                'Les 2 mots de passe doivent correspondre',
+                'Mot de passe obligatoire !',
+            ],
+            'propertyPath' => [
+                'password',
+            ],
+            'groups' => [
+                [
+                    'Default',
+                ],
+                [
+                    'Default',
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+    ],
+    []
+);

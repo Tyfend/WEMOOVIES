@@ -20,4 +20,7 @@ return [
     'blog_create' => [[], ['_controller' => 'App\\Controller\\BlogController::form'], [], [['text', '/blog/new']], [], []],
     'blog_edit' => [['id'], ['_controller' => 'App\\Controller\\BlogController::form'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'id', true], ['text', '/blog']], [], []],
     'blog_delete' => [['id'], ['_controller' => 'App\\Controller\\BlogController::delete'], [], [['text', '/delete'], ['variable', '/', '[^/]++', 'id', true], ['text', '/blog']], [], []],
+    'security_login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], []],
+    'security_signup' => [[], ['_controller' => 'App\\Controller\\SecurityController::registration'], [], [['text', '/signup']], [], []],
+    'security_logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], []],
 ];

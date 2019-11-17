@@ -76,19 +76,53 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_create");
         echo "\">Nouvel article</a>
                     </li>
-                     <li>
-                        <a href=\"#\">Connexion</a>
+                    ";
+        // line 24
+        if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN")) {
+            // line 25
+            echo "                     <li>
+                        <a href=\"#\">Administration</a>
                     </li>
-                </ul>
+                    ";
+        } elseif ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_USER")) {
+            // line 29
+            echo "                    <li>
+                        <a href=\"#\">Profil</a>
+                    </li>
+                    <li>
+                        <a href=\"";
+            // line 33
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("security_logout");
+            echo "\">Déconnexion</a>
+                    </li>
+                    ";
+        } else {
+            // line 36
+            echo "                    <li>
+                        <a href=\"";
+            // line 37
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("security_login");
+            echo "\">Connexion</a>
+                    </li>
+                    <li>
+                        <a href=\"";
+            // line 40
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("security_signup");
+            echo "\">S'enregistrer</a>
+                    </li>
+                    ";
+        }
+        // line 43
+        echo "                </ul>
             </div>
         </nav>
         ";
-        // line 30
+        // line 46
         $this->displayBlock('body', $context, $blocks);
-        // line 31
+        // line 47
         echo "        ";
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 32
+        // line 48
         echo "    </body>
 </html>
 ";
@@ -137,7 +171,7 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
 
     }
 
-    // line 30
+    // line 46
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -155,7 +189,7 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
 
     }
 
-    // line 31
+    // line 47
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -185,7 +219,7 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
 
     public function getDebugInfo()
     {
-        return array (  159 => 31,  141 => 30,  123 => 6,  104 => 5,  92 => 32,  89 => 31,  87 => 30,  76 => 22,  59 => 7,  57 => 6,  53 => 5,  47 => 1,);
+        return array (  193 => 47,  175 => 46,  157 => 6,  138 => 5,  126 => 48,  123 => 47,  121 => 46,  116 => 43,  110 => 40,  104 => 37,  101 => 36,  95 => 33,  89 => 29,  83 => 25,  81 => 24,  76 => 22,  59 => 7,  57 => 6,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -211,11 +245,27 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
                         <a href=\"#\">Films</a>
                     </li>
                     <li>
-                        <a href=\"{{ path('blog_create')}}\">Nouvel article</a>
+                        <a href=\"{{ path('blog_create') }}\">Nouvel article</a>
                     </li>
+                    {% if is_granted('ROLE_ADMIN') %}
                      <li>
-                        <a href=\"#\">Connexion</a>
+                        <a href=\"#\">Administration</a>
                     </li>
+                    {% elseif is_granted('ROLE_USER') %}
+                    <li>
+                        <a href=\"#\">Profil</a>
+                    </li>
+                    <li>
+                        <a href=\"{{ path('security_logout') }}\">Déconnexion</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href=\"{{ path('security_login') }}\">Connexion</a>
+                    </li>
+                    <li>
+                        <a href=\"{{ path('security_signup') }}\">S'enregistrer</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>

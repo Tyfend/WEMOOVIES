@@ -1,0 +1,54 @@
+<?php
+
+namespace Symfony\Component\VarExporter\Internal;
+
+return $getExpiry ? PHP_INT_MAX : Hydrator::hydrate(
+    $o = [
+        clone (($p = &Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Column'] ?? Registry::p('Doctrine\\ORM\\Mapping\\Column')),
+        clone ($p['Symfony\\Component\\Validator\\Constraints\\Length'] ?? Registry::p('Symfony\\Component\\Validator\\Constraints\\Length')),
+        clone ($p['Symfony\\Component\\Validator\\Constraints\\Email'] ?? Registry::p('Symfony\\Component\\Validator\\Constraints\\Email')),
+        clone ($p['Symfony\\Component\\Validator\\Constraints\\NotBlank'] ?? Registry::p('Symfony\\Component\\Validator\\Constraints\\NotBlank')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'length' => [
+                100,
+            ],
+            'maxMessage' => [
+                1 => 'L\'adresse mail doit avoir au plus 100 caractères',
+            ],
+            'minMessage' => [
+                1 => 'L\'adresse mail doit avoir au moins 5 caractères',
+            ],
+            'max' => [
+                1 => 100,
+            ],
+            'min' => [
+                1 => 5,
+            ],
+            'groups' => [
+                1 => [
+                    'Default',
+                ],
+                [
+                    'Default',
+                ],
+                [
+                    'Default',
+                ],
+            ],
+            'message' => [
+                2 => 'Merci d\'entrer une adresse email valide',
+                'Adresse email obligatoire !',
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+        $o[2],
+        $o[3],
+    ],
+    []
+);
