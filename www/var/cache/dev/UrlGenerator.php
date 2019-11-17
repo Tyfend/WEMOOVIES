@@ -15,6 +15,7 @@ return [
     '_profiler_router' => [['token'], ['_controller' => 'web_profiler.controller.router::panelAction'], [], [['text', '/router'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
     '_profiler_exception' => [['token'], ['_controller' => 'web_profiler.controller.exception::showAction'], [], [['text', '/exception'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception::cssAction'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
+    'admin_pannel' => [[], ['_controller' => 'App\\Controller\\AdminController::showAdmin'], [], [['text', '/admin']], [], []],
     'blog' => [[], ['_controller' => 'App\\Controller\\BlogController::index'], [], [['text', '/blog']], [], []],
     'blog_show' => [['id'], ['_controller' => 'App\\Controller\\BlogController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/blog/show']], [], []],
     'blog_create' => [[], ['_controller' => 'App\\Controller\\BlogController::form'], [], [['text', '/blog/new']], [], []],
@@ -23,4 +24,5 @@ return [
     'security_login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], []],
     'security_signup' => [[], ['_controller' => 'App\\Controller\\SecurityController::registration'], [], [['text', '/signup']], [], []],
     'security_logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], []],
+    'user_profil' => [[], ['_controller' => 'App\\Controller\\UserController::index'], [], [['text', '/profil']], [], []],
 ];

@@ -35,11 +35,12 @@ class SecurityController extends AbstractController
 
             if(!$user->getRoles()) {
                 $user->setRoles(['ROLE_USER']);
+                // $user->setRoles(['ROLE_USER']);
             }
 
             $manager->persist($user);
             $manager->flush();
-            
+
             return $this->redirectToRoute('security_login');
         }
  

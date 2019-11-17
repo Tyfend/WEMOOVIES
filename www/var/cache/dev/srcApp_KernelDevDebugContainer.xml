@@ -388,6 +388,13 @@
     <service id="EasyCorp\EasyLog\EasyLogHandler" class="EasyCorp\EasyLog\EasyLogHandler" public="false">
       <argument>/var/www/var/log/dev.log</argument>
     </service>
+    <service id="App\Controller\AdminController" class="App\Controller\AdminController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.CDOTD6..App\Controller\AdminController"/>
+      </call>
+    </service>
     <service id="App\Controller\BlogController" class="App\Controller\BlogController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -402,6 +409,13 @@
         <argument type="service" id=".service_locator.CDOTD6..App\Controller\SecurityController"/>
       </call>
     </service>
+    <service id="App\Controller\UserController" class="App\Controller\UserController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.CDOTD6..App\Controller\UserController"/>
+      </call>
+    </service>
     <service id="App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
     </service>
@@ -413,6 +427,10 @@
     </service>
     <service id="App\Form\RegistrationType" class="App\Form\RegistrationType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
+    </service>
+    <service id="App\Repository\AdminRepository" class="App\Repository\AdminRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\ArticleRepository" class="App\Repository\ArticleRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
@@ -2952,7 +2970,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory" public="false">
-      <argument type="service" id=".service_locator.UNKueZr"/>
+      <argument type="service" id=".service_locator.HScMsz4"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -3370,7 +3388,7 @@
         <argument>null</argument>
       </call>
       <call method="add">
-        <argument type="service" id=".security.request_matcher.Pn7yvdV"/>
+        <argument type="service" id=".security.request_matcher.qecNRWT"/>
         <argument type="collection">
           <argument>ROLE_USER</argument>
         </argument>
@@ -3865,8 +3883,8 @@
     <service id=".security.request_matcher.5dJADCx" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/admin</argument>
     </service>
-    <service id=".security.request_matcher.Pn7yvdV" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/profile</argument>
+    <service id=".security.request_matcher.qecNRWT" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/profil</argument>
     </service>
     <service id="security.command.user_password_encoder" class="Symfony\Bundle\SecurityBundle\Command\UserPasswordEncoderCommand" public="false">
       <tag name="console.command" command="security:encode-password"/>
@@ -4652,12 +4670,18 @@
         </argument>
       </call>
     </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\BlogController" class="App\Controller\BlogController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\BlogController" class="App\Controller\BlogController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\BlogController" class="App\Controller\BlogController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\UserController" class="App\Controller\UserController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\UserController" class="App\Controller\UserController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\UserController" class="App\Controller\UserController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\ArticleFixtures" class="App\DataFixtures\ArticleFixtures" autowire="true" abstract="true"/>
@@ -4666,6 +4690,8 @@
     <service id=".abstract.instanceof.App\Form\ArticleType" class="App\Form\ArticleType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationType" class="App\Form\RegistrationType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\RegistrationType" class="App\Form\RegistrationType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\AdminRepository" class="App\Repository\AdminRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\AdminRepository" class="App\Repository\AdminRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ArticleRepository" class="App\Repository\ArticleRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ArticleRepository" class="App\Repository\ArticleRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
@@ -4955,9 +4981,10 @@
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
       </argument>
     </service>
-    <service id=".service_locator.UNKueZr" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.HScMsz4" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Repository\AdminRepository" type="service" id="App\Repository\AdminRepository"/>
         <argument key="App\Repository\ArticleRepository" type="service" id="App\Repository\ArticleRepository"/>
         <argument key="App\Repository\UserRepository" type="service" id="App\Repository\UserRepository"/>
       </argument>
@@ -5158,6 +5185,12 @@
         <argument key="twig" type="service" id="twig" on-invalid="ignore"/>
       </argument>
     </service>
+    <service id=".service_locator.CDOTD6..App\Controller\AdminController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\AdminController"/>
+      <argument>App\Controller\AdminController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.CDOTD6." method="withContext"/>
+    </service>
     <service id=".service_locator.CDOTD6..App\Controller\BlogController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\BlogController"/>
       <argument>App\Controller\BlogController</argument>
@@ -5167,6 +5200,12 @@
     <service id=".service_locator.CDOTD6..App\Controller\SecurityController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\SecurityController"/>
       <argument>App\Controller\SecurityController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.CDOTD6." method="withContext"/>
+    </service>
+    <service id=".service_locator.CDOTD6..App\Controller\UserController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\UserController"/>
+      <argument>App\Controller\UserController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.CDOTD6." method="withContext"/>
     </service>

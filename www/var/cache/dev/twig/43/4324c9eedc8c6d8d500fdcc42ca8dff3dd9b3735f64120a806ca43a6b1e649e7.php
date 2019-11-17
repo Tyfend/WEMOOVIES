@@ -65,29 +65,38 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
                         <a href=\"#\">Accueil</a>
                     </li>
                      <li>
-                        <a href=\"#\">News</a>
+                        <a href=\"";
+        // line 16
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog");
+        echo "\">News</a>
                     </li>
                      <li>
                         <a href=\"#\">Films</a>
                     </li>
+                    ";
+        // line 21
+        if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN")) {
+            // line 22
+            echo "                     <li>
+                        <a href=\"";
+            // line 23
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin_pannel");
+            echo "\">Administration</a>
+                    </li>
                     <li>
                         <a href=\"";
-        // line 22
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_create");
-        echo "\">Nouvel article</a>
-                    </li>
-                    ";
-        // line 24
-        if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN")) {
-            // line 25
-            echo "                     <li>
-                        <a href=\"#\">Administration</a>
+            // line 26
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_create");
+            echo "\">Nouvel article</a>
                     </li>
                     ";
         } elseif ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_USER")) {
             // line 29
             echo "                    <li>
-                        <a href=\"#\">Profil</a>
+                        <a href=\"";
+            // line 30
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("user_profil");
+            echo "\">Profil</a>
                     </li>
                     <li>
                         <a href=\"";
@@ -219,7 +228,7 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
 
     public function getDebugInfo()
     {
-        return array (  193 => 47,  175 => 46,  157 => 6,  138 => 5,  126 => 48,  123 => 47,  121 => 46,  116 => 43,  110 => 40,  104 => 37,  101 => 36,  95 => 33,  89 => 29,  83 => 25,  81 => 24,  76 => 22,  59 => 7,  57 => 6,  53 => 5,  47 => 1,);
+        return array (  202 => 47,  184 => 46,  166 => 6,  147 => 5,  135 => 48,  132 => 47,  130 => 46,  125 => 43,  119 => 40,  113 => 37,  110 => 36,  104 => 33,  98 => 30,  95 => 29,  89 => 26,  83 => 23,  80 => 22,  78 => 21,  70 => 16,  59 => 7,  57 => 6,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -239,21 +248,21 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
                         <a href=\"#\">Accueil</a>
                     </li>
                      <li>
-                        <a href=\"#\">News</a>
+                        <a href=\"{{ path('blog') }}\">News</a>
                     </li>
                      <li>
                         <a href=\"#\">Films</a>
                     </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                     <li>
+                        <a href=\"{{ path('admin_pannel') }}\">Administration</a>
+                    </li>
                     <li>
                         <a href=\"{{ path('blog_create') }}\">Nouvel article</a>
                     </li>
-                    {% if is_granted('ROLE_ADMIN') %}
-                     <li>
-                        <a href=\"#\">Administration</a>
-                    </li>
                     {% elseif is_granted('ROLE_USER') %}
                     <li>
-                        <a href=\"#\">Profil</a>
+                        <a href=\"{{ path('user_profil') }}\">Profil</a>
                     </li>
                     <li>
                         <a href=\"{{ path('security_logout') }}\">Déconnexion</a>

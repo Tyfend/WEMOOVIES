@@ -13,21 +13,21 @@
                         <a href="#">Accueil</a>
                     </li>
                      <li>
-                        <a href="#">News</a>
+                        <a href="{{ path('blog') }}">News</a>
                     </li>
                      <li>
                         <a href="#">Films</a>
                     </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                     <li>
+                        <a href="{{ path('admin_pannel') }}">Administration</a>
+                    </li>
                     <li>
                         <a href="{{ path('blog_create') }}">Nouvel article</a>
                     </li>
-                    {% if is_granted('ROLE_ADMIN') %}
-                     <li>
-                        <a href="#">Administration</a>
-                    </li>
                     {% elseif is_granted('ROLE_USER') %}
                     <li>
-                        <a href="#">Profil</a>
+                        <a href="{{ path('user_profil') }}">Profil</a>
                     </li>
                     <li>
                         <a href="{{ path('security_logout') }}">Déconnexion</a>
