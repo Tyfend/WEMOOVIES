@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use Faker\Factory;
 use App\Entity\Article;
+use App\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -14,17 +15,25 @@ class ArticleFixtures extends Fixture
      */
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i < 20; $i++) {
+        $faker = Factory::create();
 
-            $faker = Factory::create();
-            $article = new Article();
+        for ($c = 0; $c < 3; $c++) {
+            $category = new Category();
 
-            $article->setTitle($faker->sentence(1))
-            ->setContent($faker->sentence(15))
-            ->setCreatedAt($faker->dateTime($max = 'now', $timezone = 'Europe/Paris'));
+            $category->setName($faker->word(true));
+ 
+            $manager->persist($category);
 
-            $manager->persist($article);
+            for ($i = 0; $i < 20; $i++) {
+                $article = new Article();
+
+                $article->setTitle($faker->sentence(1))
+                ->setContent($faker->sentence(15))
+                ->setCreatedAt($faker->dateTime($max = 'now', $timezone = 'Europe/Paris'))
+                ->addCategory($category);
+                $manager->persist($article);
+            }
+            $manager->flush();
         }
-        $manager->flush();
     }
 }

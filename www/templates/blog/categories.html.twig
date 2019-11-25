@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>{{ title }}</h1>
+{% for category in categories %}
+<div class="">
+    <article>
+        <div>
+            <p>{{ category.name }}</p>
+            <div>
+                <button><a href="{{ path('category_edit', {'id': category.id}) }}">éditer</a></button>
+                <button><a href="{{ path('category_delete', {'id': category.id}) }}">supprimer</a></button>
+            </div>
+        </div>
+    </article>
+</div>
+{% endfor %}
+{% endblock %}

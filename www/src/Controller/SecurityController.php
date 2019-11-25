@@ -13,6 +13,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class SecurityController extends AbstractController
 {
     /**
+     * Method show login form page
      * @Route("/login", name="security_login")
      */
     public function login()
@@ -21,6 +22,8 @@ class SecurityController extends AbstractController
     }
 
     /**
+     * Method show registration form page + create user with role
+     * and redirect to login form page
      * @Route("/signup", name="security_signup")
      */
     public function registration(ObjectManager $manager, Request $request, UserPasswordEncoderInterface $encode)
@@ -35,7 +38,6 @@ class SecurityController extends AbstractController
 
             if(!$user->getRoles()) {
                 $user->setRoles(['ROLE_USER']);
-                // $user->setRoles(['ROLE_USER']);
             }
 
             $manager->persist($user);
@@ -50,6 +52,7 @@ class SecurityController extends AbstractController
     }
 
     /**
+     * Method logout user
      * @Route("/logout", name="security_logout")
      */
 

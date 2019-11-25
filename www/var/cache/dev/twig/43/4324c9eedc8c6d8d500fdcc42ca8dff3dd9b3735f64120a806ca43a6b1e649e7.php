@@ -28,7 +28,6 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
 
         $this->blocks = [
             'title' => [$this, 'block_title'],
-            'stylesheets' => [$this, 'block_stylesheets'],
             'body' => [$this, 'block_body'],
             'javascripts' => [$this, 'block_javascripts'],
         ];
@@ -52,17 +51,14 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
         // line 5
         $this->displayBlock('title', $context, $blocks);
         echo "</title>
-        ";
-        // line 6
-        $this->displayBlock('stylesheets', $context, $blocks);
-        // line 7
-        echo "    </head>
+        <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\"/>
+    </head>
     <body>
         <nav>
             <div>
                 <ul>
                     <li>
-                        <a href=\"#\">Accueil</a>
+                        <a href=\"/\">Accueil</a>
                     </li>
                      <li>
                         <a href=\"";
@@ -89,49 +85,64 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_create");
             echo "\">Nouvel article</a>
                     </li>
+                    <li>
+                        <a href=\"";
+            // line 29
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_category");
+            echo "\">Catégories</a>
+                    </li>
+                    <li>
+                        <a href=\"";
+            // line 32
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("category_create");
+            echo "\">Ajouter une catégorie</a>
+                    </li>
                     ";
         } elseif ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_USER")) {
-            // line 29
+            // line 35
             echo "                    <li>
                         <a href=\"";
-            // line 30
+            // line 36
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("user_profil");
             echo "\">Profil</a>
                     </li>
                     <li>
                         <a href=\"";
-            // line 33
+            // line 39
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("security_logout");
             echo "\">Déconnexion</a>
                     </li>
                     ";
         } else {
-            // line 36
+            // line 42
             echo "                    <li>
                         <a href=\"";
-            // line 37
+            // line 43
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("security_login");
             echo "\">Connexion</a>
                     </li>
                     <li>
                         <a href=\"";
-            // line 40
+            // line 46
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("security_signup");
             echo "\">S'enregistrer</a>
                     </li>
                     ";
         }
-        // line 43
+        // line 49
         echo "                </ul>
             </div>
         </nav>
         ";
-        // line 46
+        // line 52
         $this->displayBlock('body', $context, $blocks);
-        // line 47
-        echo "        ";
+        // line 53
+        echo "        <script src=\"https://code.jquery.com/jquery-3.4.1.min.js\" integrity=\"sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=\" crossorigin=\"anonymous\"></script>
+        <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\" integrity=\"sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM\" crossorigin=\"anonymous\"></script>
+        ";
+        // line 55
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 48
+        // line 56
         echo "    </body>
 </html>
 ";
@@ -162,25 +173,7 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
 
     }
 
-    // line 6
-    public function block_stylesheets($context, array $blocks = [])
-    {
-        $macros = $this->macros;
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
-
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
-
-        
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
-
-        
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
-
-    }
-
-    // line 46
+    // line 52
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -198,7 +191,7 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
 
     }
 
-    // line 47
+    // line 55
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -228,7 +221,7 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
 
     public function getDebugInfo()
     {
-        return array (  202 => 47,  184 => 46,  166 => 6,  147 => 5,  135 => 48,  132 => 47,  130 => 46,  125 => 43,  119 => 40,  113 => 37,  110 => 36,  104 => 33,  98 => 30,  95 => 29,  89 => 26,  83 => 23,  80 => 22,  78 => 21,  70 => 16,  59 => 7,  57 => 6,  53 => 5,  47 => 1,);
+        return array (  195 => 55,  177 => 52,  158 => 5,  146 => 56,  144 => 55,  140 => 53,  138 => 52,  133 => 49,  127 => 46,  121 => 43,  118 => 42,  112 => 39,  106 => 36,  103 => 35,  97 => 32,  91 => 29,  85 => 26,  79 => 23,  76 => 22,  74 => 21,  66 => 16,  52 => 5,  46 => 1,);
     }
 
     public function getSourceContext()
@@ -238,14 +231,14 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
     <head>
         <meta charset=\"UTF-8\">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\"/>
     </head>
     <body>
         <nav>
             <div>
                 <ul>
                     <li>
-                        <a href=\"#\">Accueil</a>
+                        <a href=\"/\">Accueil</a>
                     </li>
                      <li>
                         <a href=\"{{ path('blog') }}\">News</a>
@@ -259,6 +252,12 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
                     </li>
                     <li>
                         <a href=\"{{ path('blog_create') }}\">Nouvel article</a>
+                    </li>
+                    <li>
+                        <a href=\"{{ path('blog_category') }}\">Catégories</a>
+                    </li>
+                    <li>
+                        <a href=\"{{ path('category_create') }}\">Ajouter une catégorie</a>
                     </li>
                     {% elseif is_granted('ROLE_USER') %}
                     <li>
@@ -279,6 +278,8 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
             </div>
         </nav>
         {% block body %}{% endblock %}
+        <script src=\"https://code.jquery.com/jquery-3.4.1.min.js\" integrity=\"sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=\" crossorigin=\"anonymous\"></script>
+        <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\" integrity=\"sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM\" crossorigin=\"anonymous\"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

@@ -71,30 +71,37 @@ class __TwigTemplate_de2f98392bd00de8c46085ab6ad106c68390b7c086fe37386c79f2d8e18
         // line 7
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 7, $this->source); })()), "title", [], "any", false, false, false, 7), "html", null, true);
         echo "</h3>
-        <span>Publié le ";
-        // line 8
-        echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 8, $this->source); })()), "createdAt", [], "any", false, false, false, 8), "D d M Y"), "html", null, true);
+        ";
+        // line 9
+        echo "        <span>Publié le ";
+        echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 9, $this->source); })()), "createdAt", [], "any", false, false, false, 9), "D d M Y"), "html", null, true);
         echo " à ";
-        echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 8, $this->source); })()), "createdAt", [], "any", false, false, false, 8), "h:i"), "html", null, true);
+        echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 9, $this->source); })()), "createdAt", [], "any", false, false, false, 9), "h:i"), "html", null, true);
         echo "</span>
         <p>";
-        // line 9
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 9, $this->source); })()), "content", [], "any", false, false, false, 9), "html", null, true);
+        // line 10
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 10, $this->source); })()), "content", [], "any", false, false, false, 10), "html", null, true);
         echo "</p>
         <div>
             <a href=\"";
-        // line 11
+        // line 12
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog");
         echo "\">Retour</a>
-            <a href=\"";
-        // line 12
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_edit", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 12, $this->source); })()), "id", [], "any", false, false, false, 12)]), "html", null, true);
-        echo "\">éditer</a>
-            <a href=\"";
+            ";
         // line 13
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_delete", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 13, $this->source); })()), "id", [], "any", false, false, false, 13)]), "html", null, true);
-        echo "\">supprimer</a>
-        </div>
+        if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN")) {
+            // line 14
+            echo "            <a href=\"";
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_edit", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 14, $this->source); })()), "id", [], "any", false, false, false, 14)]), "html", null, true);
+            echo "\">éditer</a>
+            <a href=\"";
+            // line 15
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_delete", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["article"]) || array_key_exists("article", $context) ? $context["article"] : (function () { throw new RuntimeError('Variable "article" does not exist.', 15, $this->source); })()), "id", [], "any", false, false, false, 15)]), "html", null, true);
+            echo "\">supprimer</a>
+            ";
+        }
+        // line 17
+        echo "        </div>
     </article>
 </div>
 ";
@@ -118,7 +125,7 @@ class __TwigTemplate_de2f98392bd00de8c46085ab6ad106c68390b7c086fe37386c79f2d8e18
 
     public function getDebugInfo()
     {
-        return array (  95 => 13,  91 => 12,  87 => 11,  82 => 9,  76 => 8,  72 => 7,  68 => 5,  58 => 4,  35 => 1,);
+        return array (  104 => 17,  99 => 15,  94 => 14,  92 => 13,  88 => 12,  83 => 10,  76 => 9,  72 => 7,  68 => 5,  58 => 4,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -130,12 +137,15 @@ class __TwigTemplate_de2f98392bd00de8c46085ab6ad106c68390b7c086fe37386c79f2d8e18
 <div class=\"\">
     <article>
         <h3>{{ article.title }}</h3>
+        {# <span>Catégories : {{ article.category }}</span> #}
         <span>Publié le {{ article.createdAt |date('D d M Y') }} à {{ article.createdAt |date('h:i') }}</span>
         <p>{{ article.content }}</p>
         <div>
             <a href=\"{{ path('blog')}}\">Retour</a>
+            {% if is_granted('ROLE_ADMIN') %}
             <a href=\"{{ path('blog_edit', {'id': article.id}) }}\">éditer</a>
             <a href=\"{{ path('blog_delete', {'id': article.id}) }}\">supprimer</a>
+            {% endif %}
         </div>
     </article>
 </div>

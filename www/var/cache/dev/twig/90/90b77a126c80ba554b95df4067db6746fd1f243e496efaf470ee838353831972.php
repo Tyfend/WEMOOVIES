@@ -80,30 +80,37 @@ class __TwigTemplate_43f7ce5e01286262025425a1a7c924d47c274629f57d021f3664b76065c
             // line 8
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "title", [], "any", false, false, false, 8), "html", null, true);
             echo "</h3>
-        <span>Publié le ";
-            // line 9
-            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "createdAt", [], "any", false, false, false, 9), "D d M Y"), "html", null, true);
+        ";
+            // line 10
+            echo "        <span>Publié le ";
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "createdAt", [], "any", false, false, false, 10), "D d M Y"), "html", null, true);
             echo " à ";
-            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "createdAt", [], "any", false, false, false, 9), "h:i"), "html", null, true);
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "createdAt", [], "any", false, false, false, 10), "h:i"), "html", null, true);
             echo "</span>
         <p>";
-            // line 10
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "content", [], "any", false, false, false, 10), "html", null, true);
+            // line 11
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "content", [], "any", false, false, false, 11), "html", null, true);
             echo "</p>
         <div>
             <a href=\"";
-            // line 12
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_show", ["id" => twig_get_attribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 12)]), "html", null, true);
-            echo "\">Lire l'article</a>
-            <a href=\"";
             // line 13
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 13)]), "html", null, true);
-            echo "\">éditer</a>
-            <a href=\"";
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_show", ["id" => twig_get_attribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 13)]), "html", null, true);
+            echo "\">Lire l'article</a>
+            ";
             // line 14
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 14)]), "html", null, true);
-            echo "\">supprimer</a>
-        </div>
+            if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN")) {
+                // line 15
+                echo "            <a href=\"";
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 15)]), "html", null, true);
+                echo "\">éditer</a>
+            <a href=\"";
+                // line 16
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 16)]), "html", null, true);
+                echo "\">supprimer</a>
+            ";
+            }
+            // line 18
+            echo "        </div>
     </article>
 </div>
 ";
@@ -131,7 +138,7 @@ class __TwigTemplate_43f7ce5e01286262025425a1a7c924d47c274629f57d021f3664b76065c
 
     public function getDebugInfo()
     {
-        return array (  104 => 14,  100 => 13,  96 => 12,  91 => 10,  85 => 9,  81 => 8,  77 => 6,  73 => 5,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  113 => 18,  108 => 16,  103 => 15,  101 => 14,  97 => 13,  92 => 11,  85 => 10,  81 => 8,  77 => 6,  73 => 5,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -144,12 +151,15 @@ class __TwigTemplate_43f7ce5e01286262025425a1a7c924d47c274629f57d021f3664b76065c
 <div class=\"\">
     <article>
         <h3>{{ article.title }}</h3>
+        {# <span>Catégorie : {{article.categories }}</p> #}
         <span>Publié le {{ article.createdAt |date('D d M Y') }} à {{ article.createdAt |date('h:i') }}</span>
         <p>{{ article.content }}</p>
         <div>
             <a href=\"{{ path('blog_show', {'id': article.id}) }}\">Lire l'article</a>
+            {% if is_granted('ROLE_ADMIN') %}
             <a href=\"{{ path('blog_edit', {'id': article.id}) }}\">éditer</a>
             <a href=\"{{ path('blog_delete', {'id': article.id}) }}\">supprimer</a>
+            {% endif %}
         </div>
     </article>
 </div>

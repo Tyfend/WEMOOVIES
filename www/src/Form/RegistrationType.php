@@ -12,6 +12,9 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class RegistrationType extends AbstractType
 {
+    /**
+     * Create registration's form with dependance FormBuilderInterface
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -19,7 +22,7 @@ class RegistrationType extends AbstractType
             ->add('username', TextType::class)
             ->add('password', PasswordType::class)
             ->add('confirm_password', PasswordType::class)
-        ;
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

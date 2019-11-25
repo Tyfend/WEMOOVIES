@@ -16,6 +16,8 @@ return [
         '/admin' => [[['_route' => 'admin_pannel', '_controller' => 'App\\Controller\\AdminController::showAdmin'], null, null, null, false, false, null]],
         '/blog' => [[['_route' => 'blog', '_controller' => 'App\\Controller\\BlogController::index'], null, null, null, false, false, null]],
         '/blog/new' => [[['_route' => 'blog_create', '_controller' => 'App\\Controller\\BlogController::form'], null, null, null, false, false, null]],
+        '/blog/categories' => [[['_route' => 'blog_category', '_controller' => 'App\\Controller\\BlogController::categories'], null, null, null, false, false, null]],
+        '/blog/category/new' => [[['_route' => 'category_create', '_controller' => 'App\\Controller\\BlogController::formCategory'], null, null, null, false, false, null]],
         '/login' => [[['_route' => 'security_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
         '/signup' => [[['_route' => 'security_signup', '_controller' => 'App\\Controller\\SecurityController::registration'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'security_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
@@ -44,6 +46,10 @@ return [
                         .'|edit(*:215)'
                         .'|delete(*:229)'
                     .')'
+                    .'|category/([^/]++)/(?'
+                        .'|edit(*:263)'
+                        .'|delete(*:277)'
+                    .')'
                 .')'
             .')/?$}sDu',
     ],
@@ -57,8 +63,10 @@ return [
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         191 => [[['_route' => 'blog_show', '_controller' => 'App\\Controller\\BlogController::show'], ['id'], null, null, false, true, null]],
         215 => [[['_route' => 'blog_edit', '_controller' => 'App\\Controller\\BlogController::form'], ['id'], null, null, false, false, null]],
-        229 => [
-            [['_route' => 'blog_delete', '_controller' => 'App\\Controller\\BlogController::delete'], ['id'], null, null, false, false, null],
+        229 => [[['_route' => 'blog_delete', '_controller' => 'App\\Controller\\BlogController::delete'], ['id'], null, null, false, false, null]],
+        263 => [[['_route' => 'category_edit', '_controller' => 'App\\Controller\\BlogController::formCategory'], ['id'], null, null, false, false, null]],
+        277 => [
+            [['_route' => 'category_delete', '_controller' => 'App\\Controller\\BlogController::deleteCategory'], ['id'], null, null, false, false, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

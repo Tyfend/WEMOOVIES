@@ -14,7 +14,7 @@ return $getExpiry ? PHP_INT_MAX : Hydrator::hydrate(
                 'App\\Repository\\UserRepository',
             ],
             'message' => [
-                1 => 'Nom d\'utilisateur non disponible',
+                1 => 'Email non disponible',
             ],
             'fields' => [
                 1 => [
